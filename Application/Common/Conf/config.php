@@ -17,4 +17,6 @@ return array(
     'DEFAULT_CONTROLLER'    =>  'Login', // 默认控制器名称
     'DEFAULT_ACTION'        =>  'index', // 默认操作名称
     'DEFAULT_CHARSET'       =>  'utf-8', // 默认输出编码
+    //默认错误跳转对应的模板文件
+    'TMPL_ACTION_ERROR' => '/Common/error',
 );

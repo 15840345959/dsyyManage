@@ -195,7 +195,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <?php if(($book_list["status"]) == "1"): ?><hr />
+                    <?php if(($book_list["status"]) == "1"): ?><hr style="margin:0px;" />
                         <div class="panel-bd">
                             <div class="form-group-col-2">
                                 <div class="text-label" >会员：</div>

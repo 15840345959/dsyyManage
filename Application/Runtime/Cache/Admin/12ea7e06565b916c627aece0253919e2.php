@@ -1,6 +1,5 @@
-<?php if (!defined('THINK_PATH')) exit();?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<html>
 <head>
     <link rel="stylesheet" type="text/css" href="/Public/404/css/main.css" />
     <link rel="stylesheet" type="text/css" href="/Public/404/css/tipsy.css" />
@@ -45,11 +44,11 @@
 <body>
 
 <!-- Universal preloader -->
-<div id="universal-preloader">
-    <div class="preloader">
-        <!--<img src="images/universal-preloader.gif" alt="universal-preloader" class="universal-preloader-preloader" />-->
-    </div>
-</div>
+<!--<div id="universal-preloader">-->
+    <!--<div class="preloader">-->
+        <!--&lt;!&ndash;<img src="images/universal-preloader.gif" alt="universal-preloader" class="universal-preloader-preloader" />&ndash;&gt;-->
+    <!--</div>-->
+<!--</div>-->
 <!-- Universal preloader -->
 
 <div id="wrapper">
@@ -73,8 +72,11 @@
 
     <!-- top menu -->
     <div class="top-menu">
-        <a href="<?php echo U('Admin/Index/index');?>" class="with-tooltip" title="Return to the home page">首页</a>|
-        <a href="javascript:history.back(-1)" class="with-tooltip" title="Return to the home page">返回</a>
+        <b>
+            <a href="/Admin.html" class="with-tooltip" title="Return to the home page">重新登录</a>|
+            <a href="<?php echo U('Admin/Index/index');?>" class="with-tooltip" title="Return to the home page">首页</a>|
+            <a href="javascript:history.back(-1)" class="with-tooltip" title="Return to the home page">返回</a>
+        </b>
     </div>
     <!-- top menu -->
 

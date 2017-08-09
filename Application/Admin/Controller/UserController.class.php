@@ -51,7 +51,7 @@ class UserController extends CommonController{
             else
             {
                 $data["result"]=false;
-                $data["code"]="1003";
+                $data["code"]="1004";
                 $data["message"]="修改密码失败，原密码不正确";
             }
         }
