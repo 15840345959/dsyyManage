@@ -31,7 +31,7 @@ function edit_password(user_id)
     }
     else
     {
-        $.post("/Admin/User/editDo",{"user_password":user_password,"user_new_password":user_new_password,"code":code},function(data){
+        $.post("/dsyyManage/Admin/User/editDo",{"user_password":user_password,"user_new_password":user_new_password,"code":code},function(data){
             if(data.code=="1000")
             {
                 $('.mask,.dialog').show();
@@ -43,7 +43,7 @@ function edit_password(user_id)
                 $('.mask,.dialog').show();
                 $('.dialog .dialog-bd p').html(data.message);
             }
-            $("#verify").attr("src","/Admin/Verify/verify");
+            $("#verify").attr("src","/dsyyManage/Admin/Verify/verify");
         },"json")
     }
 }

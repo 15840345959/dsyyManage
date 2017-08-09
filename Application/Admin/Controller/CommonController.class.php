@@ -10,7 +10,7 @@ class CommonController extends Controller{
         {
             if(empty($_SESSION["user"]))
             {
-                $this->error('警告！非法操作：登录超时或用户已被清除，请重新先登录！跳转中...',"/Admin",5);
+                $this->error('警告！非法操作：登录超时或用户已被清除，请重新先登录！跳转中...',"/dsyyManage/Admin",5);
             }
             else
             {
@@ -21,7 +21,7 @@ class CommonController extends Controller{
                 $user_row=$UserInfo->scope("check_name",$parameter_userinfo_name)->find();
                 if(!$user_row)
                 {
-                    $this->error('警告！非法操作：请先登录！跳转中...',"/Admin",5);
+                    $this->error('警告！非法操作：请先登录！跳转中...',"/dsyyManage/Admin",5);
                 }
                 else
                 {
@@ -67,7 +67,7 @@ class CommonController extends Controller{
     {
         session(null);  //删除session
         session('[destroy]');  //销毁session
-        $this->redirect("/Admin");
+        $this->redirect("/dsyyManage/Admin");
     }
     // 清除缓存
     public function clearruntime()

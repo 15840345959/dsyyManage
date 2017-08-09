@@ -7,20 +7,20 @@
 <meta name="author" content="DeathGhost" />
 <meta name="renderer" content="webkit">
 <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-<link rel="icon" href="/Public/Admin/images/icon/favicon.ico" type="image/x-icon">
-<link rel="stylesheet" type="text/css" href="/Public/Admin/css/style.css" />
-<link rel="stylesheet" type="text/css" href="/Public/Admin/css/supplement.css" />
-<script type="text/javascript" src="/Public/Admin/javascript/jquery.js"></script>
-<script type="text/javascript" src="/Public/Admin/javascript/plug-ins/customScrollbar.min.js"></script>
-<script type="text/javascript" src="/Public/Admin/javascript/plug-ins/echarts.min.js"></script>
-<script type="text/javascript" src="/Public/Admin/javascript/plug-ins/layerUi/layer.js"></script>
-<script type="text/javascript" src="/Public/Admin/editor/ueditor.config.js"></script>
-<script type="text/javascript" src="/Public/Admin/editor/ueditor.all.js"></script>
-<script type="text/javascript" src="/Public/Admin/javascript/plug-ins/pagination.js"></script>
-<script type="text/javascript" src="/Public/Admin/javascript/public.js"></script>
-<script type="text/javascript" src="/Public/Admin/javascript/supplement.js"></script>
-    <script src="/Public/Admin/javascript/plug-ins/customScrollbar.min.js"></script>
-    <script src="/Public/Admin/javascript/pages/login.js"></script>
+<link rel="icon" href="/dsyyManage/Public/Admin/images/icon/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="/dsyyManage/Public/Admin/css/style.css" />
+<link rel="stylesheet" type="text/css" href="/dsyyManage/Public/Admin/css/supplement.css" />
+<script type="text/javascript" src="/dsyyManage/Public/Admin/javascript/jquery.js"></script>
+<script type="text/javascript" src="/dsyyManage/Public/Admin/javascript/plug-ins/customScrollbar.min.js"></script>
+<script type="text/javascript" src="/dsyyManage/Public/Admin/javascript/plug-ins/echarts.min.js"></script>
+<script type="text/javascript" src="/dsyyManage/Public/Admin/javascript/plug-ins/layerUi/layer.js"></script>
+<script type="text/javascript" src="/dsyyManage/Public/Admin/editor/ueditor.config.js"></script>
+<script type="text/javascript" src="/dsyyManage/Public/Admin/editor/ueditor.all.js"></script>
+<script type="text/javascript" src="/dsyyManage/Public/Admin/javascript/plug-ins/pagination.js"></script>
+<script type="text/javascript" src="/dsyyManage/Public/Admin/javascript/public.js"></script>
+<script type="text/javascript" src="/dsyyManage/Public/Admin/javascript/supplement.js"></script>
+    <script src="/dsyyManage/Public/Admin/javascript/plug-ins/customScrollbar.min.js"></script>
+    <script src="/dsyyManage/Public/Admin/javascript/pages/login.js"></script>
 </head>
 <body class="login-page">
 <section class="login-contain">
@@ -46,7 +46,7 @@
                 <div class="form-group">
                     <label class="control-label" >输入验证码：</label>
                     <input type="text" placeholder="输入验证码..." style="width:35%" class="form-control form-underlined" id="code" name="code"/>
-                    <img src="/Admin/Verify/verify" width="34%" height="32px" id="verify" onclick="this.src=this.src+'?'+Math.random();" />
+                    <img src="/dsyyManage/Admin/Verify/verify" width="34%" height="32px" id="verify" onclick="this.src=this.src+'?'+Math.random();" />
                 </div>
             </li>
             <li>

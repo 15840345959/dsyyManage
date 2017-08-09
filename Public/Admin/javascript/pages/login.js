@@ -17,17 +17,17 @@ $(function(){
 			var user_id=$('#user_id').val();
 			var user_password=$('#user_password').val();
             var code=$('#code').val();
-			$.post("../Admin/Login/login",{"user_id":user_id,"user_password":user_password,"code":code},function(data){
+			$.post("../dsyyManage/Admin/Login/login",{"user_id":user_id,"user_password":user_password,"code":code},function(data){
 				if(data.code=="1000")
 					{
-						location.href="../Admin/Index/index";
+						location.href="../dsyyManage/Admin/Index/index";
 					}
 				else
 					{
 						$('.mask,.dialog').show();
 						$('.dialog .dialog-bd p').html(data.message);
 					}
-                $("#verify").attr("src","/Admin/Verify/verify");
+                $("#verify").attr("src","/dsyyManage/Admin/Verify/verify");
 			},"json")
 		}
 	});
