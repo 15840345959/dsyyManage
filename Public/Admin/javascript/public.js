@@ -107,7 +107,7 @@ $(function(){
 		  title:'系统提示',
 		  btn: ['确定','取消']
 		}, function(){
-		  $.post("/Admin/Index/clearruntime",function(data){
+		  $.post("/dsyyManage/Admin/Index/clearruntime",function(data){
 			  if(data=="1000")
 				  {
 				  layer.confirm('已成功清除缓存文件', {

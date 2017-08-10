@@ -1,46 +1,173 @@
 <extend name="Include:base" />
 <block name="header">
-    <js href="__PUBLIC__/Admin/javascript/Statistics/jqplot/jquery.jqplot.min.js"/>
-    <js href="__PUBLIC__/Admin/javascript/Statistics/jqplot/examples/syntaxhighlighter/scripts/shCore.min.js"/>
-    <js href="__PUBLIC__/Admin/javascript/Statistics/jqplot/examples/syntaxhighlighter/scripts/shBrushJScript.min.js"/>
-    <js href="__PUBLIC__/Admin/javascript/Statistics/jqplot/examples/syntaxhighlighter/scripts/shBrushXml.min.js"/>
-    <js href="__PUBLIC__/Admin/javascript/Statistics/jqplot/plugins/jqplot.logAxisRenderer.min.js"/>
-    <js href="__PUBLIC__/Admin/javascript/Statistics/jqplot/plugins/jqplot.canvasTextRenderer.min.js"/>
-    <js href="__PUBLIC__/Admin/javascript/Statistics/jqplot/plugins/jqplot.canvasAxisLabelRenderer.min.js"/>
-    <js href="__PUBLIC__/Admin/javascript/Statistics/jqplot/plugins/jqplot.canvasAxisTickRenderer.min.js"/>
-    <js href="__PUBLIC__/Admin/javascript/Statistics/jqplot/plugins/jqplot.dateAxisRenderer.min.js"/>
-    <js href="__PUBLIC__/Admin/javascript/Statistics/jqplot/plugins/jqplot.categoryAxisRenderer.min.js"/>
-    <js href="__PUBLIC__/Admin/javascript/Statistics/jqplot/plugins/jqplot.barRenderer.min.js"/>
-    <js href="__PUBLIC__/Admin/javascript/Statistics/jqplot/plugins/jqplot.pointLabels.min.js"/>
-    <js href="__PUBLIC__/Admin/javascript/Statistics/jqplot/plugins/jqplot.dateAxisRenderer.min.js"/>
-    <js href="__PUBLIC__/Admin/javascript/Statistics/jqplot/plugins/jqplot.dateAxisRenderer.min.js"/>
-    <css class="include" href="__PUBLIC__/Admin/javascript/Statistics/jqplot/jquery.jqplot.min.css" />
-    <css href="__PUBLIC__/Admin/javascript/Statistics/jqplot/examples/syntaxhighlighter/styles/shCoreDefault.min.css" />
-    <css href="__PUBLIC__/Admin/javascript/Statistics/jqplot/examples/syntaxhighlighter/styles/shThemejqPlot.min.css" />
-    <js href="__PUBLIC__/Admin/javascript/Statistics/m_jqplot.js"/>
+    <js href="__PUBLIC__/Admin/javascript/echarts/echarts.min.js"/>
     <script type="text/javascript">
         $(document).ready(function() {
 //                var bar_id=getQueryString("bar_id");  //正常URL带参形式取参数值
             var bar_id=GetRequest("bar_id");  //PATHINFO模式取参数值
+
             $.post("/dsyyManage/Admin/Statistics/data",{"bar_id":bar_id},function(record){
-                var data = record["data"];
-                var data_max = record["data_max"]; //Y轴最大刻度
-                var line_title = ["图书总数","借出数目","归还数目"]; //曲线名称
-                var y_label = "图书数量"; //Y轴标题
-                var x_label = "本月日期"; //X轴标题
-                var x = record["time"]; //定义X轴刻度值
-                var title = record["thismonth"]+"数据统计<br>（注：此表只统计当前月份的图书借出和归还数据）"; //统计图标标题
-                j.jqplot.diagram.base("chart1", data, line_title, title, x, x_label, y_label, data_max, 1);
+                // 基于准备好的dom，初始化echarts实例
+                var myChart = echarts.init(document.getElementById('chart1'));
+                // 指定图表的配置项和数据
+                option1 = {
+                    title : {
+                        text:  record["thismonth"]+'数据统计',
+                        subtext: '注：此表只统计当前月份的图书借出和归还数据'
+                    },
+                    tooltip : {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data:["图书总数","借出数目","归还数目"] //曲线名称
+                    },
+                    toolbox: {
+                        show : true,
+                        feature : {
+                            dataView : {show: true, readOnly: false},
+                            magicType : {show: true, type: ['line', 'bar']},
+                            restore : {show: true},
+                            saveAsImage : {show: true}
+                        }
+                    },
+                    calculable : true,
+                    xAxis : [
+                        {
+                            type : 'category',
+                            data : record["time"]
+                        }
+                    ],
+                    yAxis : [
+                        {
+                            type : 'value'
+                        }
+                    ],
+                    series : [
+                        {
+                            name:'图书总数',
+                            type:'bar',
+                            data:record["data_total"],
+                            markPoint : {
+                                data : [
+                                    {type : 'max', name: '最大值'},
+                                    {type : 'min', name: '最小值'}
+                                ]
+                            },
+                            markLine : {
+                                data : [
+                                    {type : 'average', name: '平均值'}
+                                ]
+                            }
+                        },
+                        {
+                            name:'借出数目',
+                            type:'bar',
+                            data:record["data_lend"],
+                            markPoint : {
+                                data : [
+                                    {type : 'max', name: '最大值'},
+                                    {type : 'min', name: '最小值'}
+                                ]
+                            },
+                            markLine : {
+                                data : [
+                                    {type : 'average', name: '平均值'}
+                                ]
+                            }
+                        },
+                        {
+                            name:'归还数目',
+                            type:'bar',
+                            data:record["data_return"],
+                            markPoint : {
+                                data : [
+                                    {type : 'max', name: '最大值'},
+                                    {type : 'min', name: '最小值'}
+                                ]
+                            },
+                            markLine : {
+                                data : [
+                                    {type : 'average', name: '平均值'}
+                                ]
+                            }
+                        }
+                    ]
+                };
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option1);
             },"json")
             $.post("/dsyyManage/Admin/Statistics/type",{"bar_id":bar_id},function(record){
-                var data = record["data"];
-                var data_max = record["data_max"]; //Y轴最大刻度
-                var line_title = ["图书总数","借出数目"]; //曲线名称
-                var y_label = "图书数量"; //Y轴标题
-                var x_label = "图书类型"; //X轴标题
-                var x = record["type"]; //定义X轴刻度值
-                var title = "图书类型统计"; //统计图标标题
-                j.jqplot.diagram.base("chart2", data, line_title, title, x, x_label, y_label, data_max, 2);
+                // 基于准备好的dom，初始化echarts实例
+                var myChart = echarts.init(document.getElementById('chart2'));
+                // 指定图表的配置项和数据
+                option2 = {
+                    title : {
+                        text: '图书类型统计'
+                    },
+                    tooltip : {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data:["图书总数","借出数目"] //曲线名称
+                    },
+                    toolbox: {
+                        show : true,
+                        feature : {
+                            dataView : {show: true, readOnly: false},
+                            magicType : {show: true, type: ['line', 'bar']},
+                            restore : {show: true},
+                            saveAsImage : {show: true}
+                        }
+                    },
+                    calculable : true,
+                    xAxis : [
+                        {
+                            type : 'category',
+                            data : record["type"]
+                        }
+                    ],
+                    yAxis : [
+                        {
+                            type : 'value'
+                        }
+                    ],
+                    series : [
+                        {
+                            name:'图书总数',
+                            type:'bar',
+                            data:record["data_total"],
+                            markPoint : {
+                                data : [
+                                    {type : 'max', name: '最大值'},
+                                    {type : 'min', name: '最小值'}
+                                ]
+                            },
+                            markLine : {
+                                data : [
+                                    {type : 'average', name: '平均值'}
+                                ]
+                            }
+                        },
+                        {
+                            name:'借出数目',
+                            type:'bar',
+                            data:record["data_lend"],
+                            markPoint : {
+                                data : [
+                                    {type : 'max', name: '最大值'},
+                                    {type : 'min', name: '最小值'}
+                                ]
+                            },
+                            markLine : {
+                                data : [
+                                    {type : 'average', name: '平均值'}
+                                ]
+                            }
+                        }
+                    ]
+                };
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option2);
             },"json")
         });
         //正常URL带参形式取参数值
@@ -90,16 +217,20 @@
             <ul>
                 <li class="child-wrap">
                     <div class="panel panel-default">
-                        <div class="panel-bd" id="chart1"></div>
+                        <div class="panel-bd" id="chart1" style="width: 100%;height:400px;"></div>
                     </div>
                 </li>
                 <li class="child-wrap">
                     <div class="panel panel-default">
-                        <div class="panel-bd" id="chart2"></div>
+                        <div class="panel-bd" id="chart2" style="width: 100%;height:400px;"></div>
                     </div>
                 </li>
             </ul>
         </div>
+
+
+        <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+        <div id="main" style="width: 600px;height:400px;"></div>
     </div>
 </block>
 <block name="popup"></block>

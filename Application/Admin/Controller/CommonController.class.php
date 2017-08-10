@@ -67,7 +67,7 @@ class CommonController extends Controller{
     {
         session(null);  //删除session
         session('[destroy]');  //销毁session
-        $this->redirect("/dsyyManage/Admin");
+        $this->redirect("/Admin");
     }
     // 清除缓存
     public function clearruntime()

@@ -83,9 +83,9 @@ class StatisticsController extends CommonController{
         }
 
         $data["thismonth"]=$thismonth; //当前月份
-        $data["data"][0]=$book_count_total_time_rows;  //图书总数集合
-        $data["data"][1]=$book_count_lend_time_rows;  //借出图书数目集合
-        $data["data"][2]=$book_count_return_time_rows;  //归还图书数目集合
+        $data["data_total"]=$book_count_total_time_rows;  //图书总数集合
+        $data["data_lend"]=$book_count_lend_time_rows;  //借出图书数目集合
+        $data["data_return"]=$book_count_return_time_rows;  //归还图书数目集合
         $max_data=array_search(max($book_count_total_time_rows),$book_count_total_time_rows);  //图书总数集合最大值的位置
         $data["data_max"]=$book_count_total_time_rows[$max_data]%10==0?$book_count_total_time_rows[$max_data]+20:$book_count_total_time_rows[$max_data]-$book_count_total_time_rows[$max_data]%10+20; //y轴最大值
         $data["time"]=$times;
@@ -127,8 +127,8 @@ class StatisticsController extends CommonController{
             $book_count_lend_style_rows[$k]=$BookObj->scope("count_status_type",$parameter_bookobj_lend_type)->count();
         }
 
-        $data["data"][0]=$book_count_total_style_rows;  //图书总数集合
-        $data["data"][1]=$book_count_lend_style_rows;  //借出图书数目集合
+        $data["data_total"]=$book_count_total_style_rows;  //图书总数集合
+        $data["data_lend"]=$book_count_lend_style_rows;  //借出图书数目集合
         $max_data=array_search(max($book_count_total_style_rows),$book_count_total_style_rows);  //图书总数集合最大值的位置
         $data["data_max"]=$book_count_total_style_rows[$max_data]%10==0?$book_count_total_style_rows[$max_data]+10:$book_count_total_style_rows[$max_data]-$book_count_total_style_rows[$max_data]%10+10; //y轴最大值
         $data["type"]=$type;
