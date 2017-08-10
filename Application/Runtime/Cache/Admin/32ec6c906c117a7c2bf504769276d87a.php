@@ -14,8 +14,6 @@
 <script type="text/javascript" src="/dsyyManage/Public/Admin/javascript/plug-ins/customScrollbar.min.js"></script>
 <script type="text/javascript" src="/dsyyManage/Public/Admin/javascript/plug-ins/echarts.min.js"></script>
 <script type="text/javascript" src="/dsyyManage/Public/Admin/javascript/plug-ins/layerUi/layer.js"></script>
-<script type="text/javascript" src="/dsyyManage/Public/Admin/editor/ueditor.config.js"></script>
-<script type="text/javascript" src="/dsyyManage/Public/Admin/editor/ueditor.all.js"></script>
 <script type="text/javascript" src="/dsyyManage/Public/Admin/javascript/plug-ins/pagination.js"></script>
 <script type="text/javascript" src="/dsyyManage/Public/Admin/javascript/public.js"></script>
 <script type="text/javascript" src="/dsyyManage/Public/Admin/javascript/supplement.js"></script>

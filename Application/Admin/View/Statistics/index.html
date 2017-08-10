@@ -22,7 +22,7 @@
         $(document).ready(function() {
 //                var bar_id=getQueryString("bar_id");  //正常URL带参形式取参数值
             var bar_id=GetRequest("bar_id");  //PATHINFO模式取参数值
-            $.post("/Admin/Statistics/data",{"bar_id":bar_id},function(record){
+            $.post("/dsyyManage/Admin/Statistics/data",{"bar_id":bar_id},function(record){
                 var data = record["data"];
                 var data_max = record["data_max"]; //Y轴最大刻度
                 var line_title = ["图书总数","借出数目","归还数目"]; //曲线名称
@@ -32,7 +32,7 @@
                 var title = record["thismonth"]+"数据统计<br>（注：此表只统计当前月份的图书借出和归还数据）"; //统计图标标题
                 j.jqplot.diagram.base("chart1", data, line_title, title, x, x_label, y_label, data_max, 1);
             },"json")
-            $.post("/Admin/Statistics/type",{"bar_id":bar_id},function(record){
+            $.post("/dsyyManage/Admin/Statistics/type",{"bar_id":bar_id},function(record){
                 var data = record["data"];
                 var data_max = record["data_max"]; //Y轴最大刻度
                 var line_title = ["图书总数","借出数目"]; //曲线名称

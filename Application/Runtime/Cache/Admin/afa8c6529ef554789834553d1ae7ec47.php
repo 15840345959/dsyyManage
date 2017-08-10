@@ -94,26 +94,64 @@
     <div class="page-wrap">
         <section class="page-hd">
             <header>
-                <h2 class="title"><i class="icon-home"></i>后台管理模板</h2>
+                <h2 class="title"><i class="icon-table"></i><?php echo ($bar_row["name"]); ?>-图书列表</h2>
             </header>
             <hr>
         </section>
-        <div class="panel panel-default">
-            <div class="panel-bd capitalize">
-                浏览器兼容：google chrome、microsoft edge、360浏览器、火狐浏览器、uc浏览器等高版本浏览器。
-            </div>
+        <div class="fr input-group mb-15">
+            <form action="/dsyyManage/Admin/Book/index" method="get">
+                <select name="type" style="width:auto;">
+                    <option value="">全部</option>
+                    <?php if(is_array($type_rows)): $i = 0; $__LIST__ = $type_rows;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$type_row): $mod = ($i % 2 );++$i; if($type_row["type"] == $type): ?><option value="<?php echo ($type_row["type"]); ?>" selected><?php echo ($type_row["type"]); ?></option>
+                            <?php else: ?>
+                            <option value="<?php echo ($type_row["type"]); ?>" ><?php echo ($type_row["type"]); ?></option><?php endif; endforeach; endif; else: echo "" ;endif; ?>
+                </select>
+                <input name="searchname" type="text" type="searchname" placeholder="<?php echo ($title); ?>" class="form-control form-boxed" style="width:auto;">
+                <input name="bar_id" type="hidden" class="form-control" value="<?php echo ($bar_row["id"]); ?>" style="width:290px;">
+                <button class="btn btn-secondary">搜索</button>
+            </form>
         </div>
-        <div class="flow-layout col-3">
-            <ul>
-                <?php if(is_array($info)): $i = 0; $__LIST__ = $info;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$info): $mod = ($i % 2 );++$i;?><li class="child-wrap">
-                        <div class="panel panel-default">
-                            <div class="panel-bd">
-                                <?php echo ($key); ?>:<?php echo ($info); ?>
-                            </div>
-                        </div>
-                    </li><?php endforeach; endif; else: echo "" ;endif; ?>
-            </ul>
-        </div>
+        <p class="title-description"></p>
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+            <tr>
+                <th width="10%">序号</th>
+                <th width="110px;">图书</th>
+                <th>基本信息</th>
+                <th width="10%">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php if(is_array($book_rows)): $i = 0; $__LIST__ = $book_rows;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$book_row): $mod = ($i % 2 );++$i;?><tr class="cen">
+                    <td><?php echo ($i); ?></td>
+                    <td>
+                        <img src="<?php echo ($book_row["images_medium"]); ?>" class="cover-image" />
+                    </td>
+                    <td class="lt">
+                        书名：《<?php echo ($book_row["title"]); ?>》<br />
+                        作者：<?php echo ($book_row["author"]); ?><br />
+                        图书类型：<?php echo ($book_row["type"]); ?><br />
+                        <span class="prominent">共有<?php echo ($book_row["count"]); ?>本,在借<?php echo ($book_row["borrow"]); ?>本</span><br />
+                        <span class="text-fourline">简介：<?php echo ($book_row["summary"]); ?></span>
+                    </td>
+                    <td>
+                        <a href="<?php echo U('Admin/Book/browse',array('bar_id'=>$bar_row[id],'book_id'=>$book_row[id]));?>" title="<?php echo CUSTOM_SYSTOM_SEE;?>" class="mr-5"><?php echo CUSTOM_SYSTOM_SEE;?></a>
+                    </td>
+                </tr><?php endforeach; endif; else: echo "" ;endif; ?>
+            </tbody>
+        </table>
+        <?php if(empty($book_rows)): ?><div class="panel panel-default">
+                <div class="panel-bd text-center">
+                    <?php echo CUSTOM_MESSAGE_NODATA;?>
+                </div>
+            </div><?php endif; ?>
+        <?php if($book_count > CUSTOM_PAGING): ?><div class="panel panel-default">
+                <div class="panel-bd">
+                    <div class='pagination'>
+                    <?php echo ($page_show); ?>
+                    </div>
+                </div>
+            </div><?php endif; ?>
     </div>
 
             <!--开始::结束-->
