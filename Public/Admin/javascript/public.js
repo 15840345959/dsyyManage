@@ -97,8 +97,8 @@ $(function(){
 		  title:'系统提示',
 		  btn: ['确定','取消']
 		}, function(){
-            console.log( '/Admin/Index/unsetsession')
-		  location.href =  '/Admin/Index/unsetsession';
+            console.log( '/dsyyManage/Admin/Index/unsetsession')
+		  location.href =  '/dsyyManage/Admin/Index/unsetsession';
 		});
 	});
 	//清除缓存
