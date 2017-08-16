@@ -36,7 +36,7 @@ function edit_password(user_id)
             {
                 $('.mask,.dialog').show();
                 $('.dialog .dialog-bd p').html('修改成功，请重新登录');
-                $('.dialog .dialog-ft').html("<a href='/Admin'><button class='btn btn-info JyesBtn'>确认</button></a>")
+                $('.dialog .dialog-ft').html("<a href='/dsyyManage/Admin'><button class='btn btn-info JyesBtn'>确认</button></a>")
             }
             else
             {
